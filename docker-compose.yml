@@ -1,0 +1,54 @@
+version: '3.9'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=MyStrongP@ssword123
+    ports:
+      - 1433:1433
+    networks:
+      - app-network
+
+  api:
+    build:
+      context: .
+      dockerfile: src/MyProject.Api/Dockerfile
+    depends_on:
+      - sqlserver
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=MyProjectDb;User Id=sa;Password=MyStrongP@ssword123;TrustServerCertificate=true;
+    ports:
+      - 5257:80
+    networks:
+      - app-network
+
+  worker:
+    build:
+      context: .
+      dockerfile: src/MyProject.Worker/Dockerfile
+    depends_on:
+      - sqlserver
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=MyProjectDb;User Id=sa;Password=MyStrongP@ssword123;TrustServerCertificate=true;
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    ports:
+      - 5173:80
+    depends_on:
+      - api
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
