@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "wT1OPOa6A80=",
+  "dgSpecHash": "I5/oUJ6bxic=",
   "success": true,
   "projectFilePath": "C:\\CodeTest\\src\\MyProject.Domain\\MyProject.Domain.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Usuário\\.nuget\\packages\\coverlet.collector\\6.0.4\\coverlet.collector.6.0.4.nupkg.sha512"
+  ],
   "logs": []
 }

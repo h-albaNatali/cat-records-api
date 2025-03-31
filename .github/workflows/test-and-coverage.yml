@@ -1,0 +1,37 @@
+name: Run Tests & Upload Coverage
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Run tests with coverage
+      run: dotnet test --collect:"XPlat Code Coverage"
+
+    - name: Install reportgenerator
+      run: dotnet tool install -g dotnet-reportgenerator-globaltool
+
+    - name: Generate coverage report
+      run: reportgenerator -reports:**/coverage.cobertura.xml -targetdir:coverage-report -reporttypes:Cobertura
+
+    - name: Upload to Codecov
+      uses: codecov/codecov-action@v4
+      with:
+        token: 7e41aca7-df1d-4aed-a083-0b5a788c5ee3
+        files: ./coverage-report/Cobertura.xml
+        fail_ci_if_error: true

@@ -214,3 +214,4 @@ C:\CodeTest\src\MyProject.Api\bin\Debug\net9.0\zh-TW\Hangfire.Core.resources.dll
 C:\CodeTest\src\MyProject.Api\bin\Debug\net9.0\zh\Hangfire.Core.resources.dll
 C:\CodeTest\src\MyProject.Api\bin\Debug\net9.0\MyProject.BackgroundJobs.dll
 C:\CodeTest\src\MyProject.Api\bin\Debug\net9.0\MyProject.BackgroundJobs.pdb
+C:\CodeTest\src\MyProject.Api\obj\Debug\net9.0\MyProject.Api.sourcelink.json
