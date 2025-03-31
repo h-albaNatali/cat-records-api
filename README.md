@@ -5,7 +5,6 @@
 ![Tests](https://img.shields.io/badge/tests-passing-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey)
 ![Dockerized](https://img.shields.io/badge/docker-ready-blue)
-![CI](https://github.com/h-albaNatali/cat-records-api/actions/workflows/ci.yml/badge.svg)
 ![codecov](https://codecov.io/gh/h-albaNatali/cat-records-api/branch/master/graph/badge.svg)
 
 
