@@ -37,5 +37,15 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
 
-    - name: Run tests
-      run: dotnet test --no-build --verbosity normal
+    - name: Run tests with coverage
+      run: dotnet test --collect:"XPlat Code Coverage" --results-directory ./TestResults
+
+    - name: Install Codecov uploader
+      run: |
+        curl -Os https://uploader.codecov.io/latest/linux/codecov
+        chmod +x codecov
+
+    - name: Upload coverage to Codecov
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      run: ./codecov -f "**/coverage.cobertura.xml"
